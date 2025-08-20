@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Neon Snake Game</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background: radial-gradient(circle at center, #0d0d0d, #000);
       font-family: Arial, sans-serif;
       color: #fff;
+      overflow: hidden;
     }
 
     canvas {
@@ -22,15 +24,20 @@
       border: 2px solid #00ffcc;
       border-radius: 10px;
       display: none;
+      width: 95vw;   /* Auto resize for mobile */
+      height: 65vh;
+      max-width: 1200px;
+      max-height: 800px;
     }
 
     #hud {
       position: absolute;
-      top: 20px;
+      top: 10px;
       text-align: center;
-      font-size: 18px;
+      font-size: 16px;
       color: #00ffcc;
       display: none;
+      width: 100%;
     }
 
     #hud span {
@@ -43,7 +50,7 @@
     }
 
     #menu h1 {
-      font-size: 40px;
+      font-size: 32px;
       margin-bottom: 20px;
     }
 
@@ -70,12 +77,48 @@
       font-size: 16px;
       color: #fff;
     }
+
+    /* Mobile Controls */
+    #controls {
+      display: none;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #00ffcc;
+      color: #000;
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px #00ffcc;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .row {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
   </style>
 </head>
 <body>
   <div id="menu">
     <h1>Welcome to Neon Snake</h1>
-    <p>Control the snake using Arrow keys.<br />Eat food to grow and score points.<br />Game ends only if you hit yourself.</p>
+    <p>Control the snake using Arrow keys or Touch buttons.<br />Eat food to grow and score points.<br />Game ends only if you hit yourself.</p>
     <button onclick="startGame()">Start Game</button>
     <button onclick="resumeGame()">Resume</button>
     <button onclick="location.reload()">Restart</button>
@@ -94,6 +137,18 @@
   </div>
 
   <canvas id="gameCanvas" width="1200" height="800"></canvas>
+
+  <!-- Mobile Controls -->
+  <div id="controls">
+    <div class="row">
+      <div class="btn" onclick="setDirection('UP')">▲</div>
+    </div>
+    <div class="row">
+      <div class="btn" onclick="setDirection('LEFT')">◀</div>
+      <div class="btn" onclick="setDirection('DOWN')">▼</div>
+      <div class="btn" onclick="setDirection('RIGHT')">▶</div>
+    </div>
+  </div>
 
   <script>
     const canvas = document.getElementById("gameCanvas");
@@ -119,7 +174,6 @@
         list.appendChild(li);
       });
     }
-
     updateLeaderboard();
 
     function placeFood() {
@@ -135,6 +189,13 @@
       else if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
       else if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
     });
+
+    function setDirection(dir) {
+      if (dir === "LEFT" && direction !== "RIGHT") direction = "LEFT";
+      if (dir === "UP" && direction !== "DOWN") direction = "UP";
+      if (dir === "RIGHT" && direction !== "LEFT") direction = "RIGHT";
+      if (dir === "DOWN" && direction !== "UP") direction = "DOWN";
+    }
 
     function draw() {
       ctx.fillStyle = "#111";
@@ -215,6 +276,7 @@
       document.getElementById("playerName").innerText = `Player: ${playerName}`;
       document.getElementById("menu").style.display = "none";
       document.getElementById("hud").style.display = "block";
+      document.getElementById("controls").style.display = "flex"; // show touch controls
       canvas.style.display = "block";
       snake = [{ x: 9 * box, y: 10 * box }];
       direction = undefined;
@@ -240,6 +302,7 @@
       pauseGame();
       document.getElementById("menu").style.display = "block";
       document.getElementById("hud").style.display = "none";
+      document.getElementById("controls").style.display = "none"; // hide controls
       canvas.style.display = "none";
     }
 
