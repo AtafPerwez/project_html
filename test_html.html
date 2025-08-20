@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressive Login Page</title>
+  <style>
+    /* Background styling */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Glassmorphism Card */
+    .login-container {
+      width: 350px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      color: #fff;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .input-field {
+      width: 100%;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .input-field input {
+      width: 100%;
+      padding: 12px 40px 12px 15px;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .input-field input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .options {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .options a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 5px;
+      transition: color 0.3s;
+    }
+
+    .options a:hover {
+      color: #ffd700;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Welcome Back</h2>
+    <form>
+      <div class="input-field">
+        <input type="text" placeholder="Username or Email" required>
+      </div>
+      <div class="input-field">
+        <input type="password" placeholder="Password" required>
+      </div>
+      <button class="btn" type="submit">Login</button>
+    </form>
+    <div class="options">
+      <p><a href="#">Forgot Password?</a> | <a href="#">Create Account</a></p>
+    </div>
+  </div>
+
+</body>
+</html>
