@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ataf login page</title>
+  <title>Ataf Login Page</title>
   <style>
     /* Background styling */
     body {
@@ -19,21 +19,30 @@
 
     /* Glassmorphism Card */
     .login-container {
-      width: 350px;
-      padding: 40px;
+      width: 380px;
+      padding: 45px 35px;
       background: rgba(255, 255, 255, 0.15);
-      border-radius: 15px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
       text-align: center;
       color: #fff;
       animation: fadeIn 1s ease-in-out;
+      position: relative;
+    }
+
+    /* Logo/Icon */
+    .login-container .logo {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 15px;
     }
 
     .login-container h2 {
       margin-bottom: 20px;
       font-size: 28px;
       font-weight: bold;
+      letter-spacing: 1px;
     }
 
     .input-field {
@@ -44,51 +53,69 @@
 
     .input-field input {
       width: 100%;
-      padding: 12px 40px 12px 15px;
+      padding: 12px 45px 12px 15px;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       outline: none;
-      font-size: 14px;
+      font-size: 15px;
       background: rgba(255, 255, 255, 0.2);
       color: #fff;
+      transition: box-shadow 0.3s;
+    }
+
+    .input-field input:focus {
+      box-shadow: 0 0 10px rgba(255,255,255,0.7);
     }
 
     .input-field input::placeholder {
       color: rgba(255, 255, 255, 0.7);
     }
 
+    /* Icons inside input */
+    .input-field i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 18px;
+    }
+
     .btn {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       color: #fff;
-      font-size: 16px;
+      font-size: 17px;
+      font-weight: bold;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 10px;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.4);
     }
 
     .options {
-      margin-top: 15px;
+      margin-top: 18px;
       font-size: 14px;
     }
 
     .options a {
-      color: #fff;
+      color: #ffd700;
       text-decoration: none;
-      font-weight: 500;
-      margin: 0 5px;
-      transition: color 0.3s;
+      font-weight: 600;
+      margin: 0 8px;
+      transition: color 0.3s, text-shadow 0.3s;
     }
 
     .options a:hover {
-      color: #ffd700;
+      color: #fff;
+      text-shadow: 0 0 8px #ffd700;
     }
 
     @keyframes fadeIn {
@@ -96,17 +123,23 @@
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/4b1b58d9c6.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
   <div class="login-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" alt="logo" class="logo">
     <h2>Welcome Back</h2>
     <form>
       <div class="input-field">
         <input type="text" placeholder="Username or Email" required>
+        <i class="fas fa-user"></i>
       </div>
       <div class="input-field">
         <input type="password" placeholder="Password" required>
+        <i class="fas fa-lock"></i>
       </div>
       <button class="btn" type="submit">Login</button>
     </form>
